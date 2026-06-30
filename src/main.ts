@@ -20,8 +20,12 @@ async function main(): Promise<void> {
   const stopLoading = startLoadingAnimation();
 
   try {
-    // 加载图片资源
-    const images = await loadAllImages();
+    // 加载图片资源（超时 15 秒兜底）
+    const imagePromise = loadAllImages();
+    const timeoutPromise = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error('Resource load timeout')), 15000),
+    );
+    const images = await Promise.race([imagePromise, timeoutPromise]);
 
     // 等待字体加载
     if (document.fonts) {

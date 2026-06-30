@@ -24,6 +24,28 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,ogg,ttf,woff,ico}'],
         cleanupOutdatedCaches: true,
+        navigateFallback: 'index.html',
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:png|ogg|ttf|woff|woff2|ico)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'game-assets',
+              expiration: { maxEntries: 50 },
+            },
+          },
+          {
+            urlPattern: /\.(?:js|css)$/,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'app-shell',
+            },
+          },
+        ],
+      },
+      devOptions: {
+        enabled: true,
+        type: 'module',
       },
     }),
   ],
