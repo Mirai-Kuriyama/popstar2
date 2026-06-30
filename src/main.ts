@@ -38,6 +38,11 @@ async function main(): Promise<void> {
     // 启动游戏
     game.start();
 
+    // E2E 测试接口（仅 dev 模式，生产构建自动 tree-shake）
+    if (import.meta.env.DEV) {
+      (window as any).__game = game;
+    }
+
     // iOS 需要用户交互后才能播放音频
     const initAudioOnce = () => {
       game.initAudio();
