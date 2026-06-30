@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "消灭星星 Pop Star - TypeScript 重构版",
   "type": "module",
+  "packageManager": "pnpm@11.5.3",
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
