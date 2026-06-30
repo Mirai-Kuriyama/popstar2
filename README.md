@@ -4,6 +4,8 @@
 
 基于原项目 [uuid1017/popstar](https://github.com/uuid1017/popstar)，借助 AI 辅助，使用现代前端技术栈完成全面重构，并集成了 PWA 技术以实现离线可玩。
 
+**在线体验：** https://mirai-kuriyama.github.io/popstar2/
+
 ## 技术栈
 
 | 技术 | 说明 |
@@ -56,10 +58,24 @@ pnpm test:e2e
 
 ## 部署
 
+项目支持多平台部署，`git push` 后 GitHub Actions 自动构建并部署到 GitHub Pages。
+
+| 平台 | 地址 |
+|------|------|
+| GitHub Pages | https://mirai-kuriyama.github.io/popstar2/ |
+| PinMe | https://popstar.pinme.dev |
+
+也可手动部署：
+
 ```bash
-# 构建 + 部署（以 PinMe 为例）
+# 构建产物
 pnpm build
+
+# 方式一：PinMe
 pinme upload dist --domain popstar
+
+# 方式二：GitHub Pages（push 后自动部署）
+git push origin main
 ```
 
 PWA 配置了 `autoUpdate` 策略，每次部署后用户下次打开即自动更新，无需手动干预。
